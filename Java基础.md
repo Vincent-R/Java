@@ -1,4 +1,4 @@
-### 常用类
+## 常用类
 * Object  
 Object类是所有类、数组、枚举类的父类。当定义一个没有使用extends关键字为它显式指定父类，则该类默认继承Object类。
 
@@ -40,8 +40,11 @@ void setTime(long time):设置该Date对象的时间。
 * Calendar  
 因为Date类在设计上存在一些缺陷，所以Java提供了Calendar类来更好地处理日期和时间。
 
-### Java集合
+## Java集合
 * Java的集合类主要由Collection和Map两个接口派生而出。
+
+### Set集合
+* Set集合不允许包含相同的元素，通过equals判断两个对象是否相等。
 
 #### Iterator
 1. boolean hasNext():如果被迭代的集合还有下一个元素就返回true。
@@ -68,3 +71,39 @@ void setTime(long time):设置该Date对象的时间。
 * 不允许重复(equals判断是否相同)。以插入集合的顺序来保存集合元素，使用链表维护元素的次序。因为需要维护元素的次序，所以性能上略低于HashSet，但是在迭代访问Set里面的元素时将会有很好的性能，因为它以链表来维护内部顺序。
 
 #### TreeSet
+* TreeSet可以确保集合元素处于排序状态。默认按照从小到大的顺序进行排序。实用红黑树算法来维护集合元素的次序。
+
+### List集合
+* List集合代表一个元素有序、可重复的集合，集合中每个元素都有其对应的顺序索引。List集合允许有重复的元素。List集合默认按照元素的添加顺序设置元素的索引。
+
+* List还额外提供了一个listIterator()方法，该方法返回一个ListIterator对象。ListIterator接口在Iterator基础上额外提供了如下方法：  
+1.boolean hasPrevious():是否还有上一个元素。  
+2.Object previous():返回上一个元素。  
+3.void add():在指定位置添加一个元素。
+
+#### ArrayList/Vector
+* ArrayList和Vector类都是基于数组实现的List类，基本上两者是想同的。在没有指定长度的情况下，两者默认的长度是10。显著的区别就是Vector是线程安全的，所以Vector的性能要比ArrayList低。
+
+### Queue集合
+* Queue用于模拟先进先出的队列。通常，队列不允许随机访问队列中的元素。
+
+#### PriorityQueue实现类
+* PriorityQueue保存队列元素的顺序并不是按加入队列的顺序，而是按队列元素的大小进行重新排序。
+
+#### Deque接口与ArrayDeque实现类
+* Deque接口是Queue接口的子接口，它代表一个双端队列，允许从两端来操作队列的元素。Deque接口提供了一个典型的实现类ArrayDeque，它是一个基于数组实现的双端队列。Deque的默认长度为16.
+
+#### LinkedList实现类
+* LinkedList类是List接口的实现类，可以根据索引来随机访问集合中的元素。除此之外，LinkedList还实现了Deque接口，因此它可以被当成双端队列来使用。
+
+### Map集合
+#### HashMap/Hashtable
+* HashMap和HashTable都是Map接口典型的实现类，都是通过键值对来储存数据。但是HashMap和HashTable也存在着两个典型的区别。  
+1.Hashtable是一个线程安全的Map实现，但HashMap是线程不安全的，所以HashMap比HashTable的性能高一点。  
+2.Hashtable不允许使用null作为key或者value。如果将null放进Hashtable中，将会引发NullPointerException异常；但HashMap可以使用null作为key或value。
+
+#### LinkedHashMap实现类
+* LinkedHashMap使用双向链表来维护key-value对的次序，该链表负责维护Map的迭代顺序，迭代顺序与key-value对的插入顺序保持一致。LinkedHashMap需要维护元素的插入顺序，因此性能上略低于HashMap，但是在迭代访问Map里的全部元素时将有较好的性能。
+
+#### SortedMap接口和TreeMap实现类
+* TreeMap就是一个红黑树数据结构，每个key-value对即作为红黑树的一个节点。TreeMap储存key-value对时，需要根据key对节点进行排序。TreeMap可以保证所有的key-value对处于有序状态。
