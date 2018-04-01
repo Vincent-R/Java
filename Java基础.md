@@ -107,3 +107,14 @@ void setTime(long time):设置该Date对象的时间。
 
 #### SortedMap接口和TreeMap实现类
 * TreeMap就是一个红黑树数据结构，每个key-value对即作为红黑树的一个节点。TreeMap储存key-value对时，需要根据key对节点进行排序。TreeMap可以保证所有的key-value对处于有序状态。
+
+## Java输入/输出
+### File类
+* File类能新建、删除、重命名文件和目录，File不能访问文件内容本身。如果需要访问文件内容本身，则需要使用输入/输出流。
+
+### IO流的分类
+1. 输入流(InputStream/Reader)和输出流(OutputStream/Writer)
+2. 字节流(操作的数据单元是8位的字节，InputStream/OutputStream)和字符流(操作的数据单元是16位的字符，Reader/Writer)
+3. 节点流和处理流
+
+### 
